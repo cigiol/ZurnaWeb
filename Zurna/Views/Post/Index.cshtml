@@ -1,0 +1,44 @@
+﻿@using Newtonsoft.Json.Linq;
+@using Newtonsoft.Json;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    //var posts = (List<Post>)ViewData["MyData"];
+    int a = 0;
+    JArray posts = (JArray)ViewData["MyData"];
+}
+
+<input style="margin:10px 15px 10px 10px;border-radius:15px;padding:5px 5px 5px 15px;width:90%" />
+<button style="background-color:black;color:white;margin:10px 15px 10px 10px;border-radius:15px;padding:5px 5px 5px 5px;">Gönder</button>
+@*@foreach (var post in posts)
+    {
+        if (a % 2 == 0)
+        {
+            <div style="background-color:turquoise;margin:10px 15px 10px 10px;border-radius:15px;padding:5px 5px 5px 15px;width:auto;"><b style="width:auto;">@post.content.text.ToString()</b></div>
+        }
+        else
+        {
+            <div style="background-color:aqua;margin:10px 10px 10px 15px;border-radius:15px;padding:5px 5px 5px 15px;width:auto;"><b style="width:auto;">@post.content.text.ToString()</b></div>
+        }
+        a++;
+    }*@
+@foreach (var post in posts)
+{
+    Post p = JsonConvert.DeserializeObject<Post>(post.ToString());
+    if (a % 2 == 0)
+    {
+        <div style="background-color:turquoise;margin:10px 15px 10px 10px;border-radius:15px;padding:5px 5px 5px 15px;width:auto;"><b style="width:auto;">@p.content.text</b></div>
+    }
+    else
+    {
+        <div style="background-color:aqua;margin:10px 10px 10px 15px;border-radius:15px;padding:5px 5px 5px 15px;width:auto;"><b style="width:auto;">@p.content.text</b></div>
+    }
+    a++;
+}
+
+
+<h2>Index</h2>
+
