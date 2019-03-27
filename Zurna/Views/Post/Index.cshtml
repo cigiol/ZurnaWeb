@@ -25,7 +25,7 @@
         }
         a++;
     }*@
-<div class="col-md-4">
+<div class="col-md-4" style="overflow-y: scroll; height:640px;">
     @foreach (var post in posts)
     {
         Post p = JsonConvert.DeserializeObject<Post>(post.ToString());
@@ -35,12 +35,12 @@
         }
         else
         {
-            <div style="background-color:aqua;margin:10px 10px 10px 25px;border-radius:15px;padding:5px 5px 5px 15px;width:300px;"><a href="http://localhost:52390/post/details/@p.id" target="index">@p.userid <br /><b style="width:auto;">@p.content.text</b></a></div>
+            <div class="aqua-gradient" style="margin:10px 10px 10px 25px;border-radius:15px;padding:5px 5px 5px 15px;width:300px;"><a href="http://localhost:52390/post/details/@p.id" target="index">@p.userid <br /><b style="width:auto;">@p.content.text</b></a></div>
         }
         a++;
     }
 </div>
-<div class="col-md-4">
+<div class="col-md-5">
     <div class="md-form mb-4 pink-textarea active-pink-textarea">
         <i class="fas fa-angle-double-right prefix"></i>
         <textarea id="form21" class="md-textarea form-control" rows="3"></textarea>
@@ -50,7 +50,7 @@
     <iframe src="" name="index" class="col-md-12" style="height:300px"></iframe>
 </div>
 
-<div class="col-md-4">
+<div class="col-md-3" style="overflow-y: scroll; height:640px;">
     @foreach (var hashtag in hashtags)
     {
         if (a % 2 == 0)
@@ -64,6 +64,7 @@
         a++;
     }
 </div>
+
 
 
 
