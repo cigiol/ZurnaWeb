@@ -164,8 +164,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="index.html" />
+    <Content Include="README.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include=".vs\slnx.sqlite" />
+    <Content Include=".vs\VSWorkspaceState.json" />
+    <Content Include="License.pdf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -193,8 +198,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home.cshtml" />
     <Content Include="Views\Post\Index.cshtml" />
+    <Content Include="Views\Post\Create.cshtml" />
+    <Content Include="Views\Post\Details.cshtml" />
+    <Content Include="Useful_Resources.pdf" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include=".vs\MDB-Free_4.7.5\v15\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>

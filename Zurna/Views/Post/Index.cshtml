@@ -9,10 +9,10 @@
     //var posts = (List<Post>)ViewData["MyData"];
     int a = 0;
     JArray posts = (JArray)ViewData["MyData"];
+    JArray hashtags = (JArray)ViewData["MyData2"];
 }
 
-<input style="margin:10px 15px 10px 10px;border-radius:15px;padding:5px 5px 5px 15px;width:90%" />
-<button style="background-color:black;color:white;margin:10px 15px 10px 10px;border-radius:15px;padding:5px 5px 5px 5px;">Gönder</button>
+
 @*@foreach (var post in posts)
     {
         if (a % 2 == 0)
@@ -25,20 +25,47 @@
         }
         a++;
     }*@
-@foreach (var post in posts)
-{
-    Post p = JsonConvert.DeserializeObject<Post>(post.ToString());
-    if (a % 2 == 0)
+<div class="col-md-4">
+    @foreach (var post in posts)
     {
-        <div style="background-color:turquoise;margin:10px 15px 10px 10px;border-radius:15px;padding:5px 5px 5px 15px;width:auto;"><b style="width:auto;">@p.content.text</b></div>
+        Post p = JsonConvert.DeserializeObject<Post>(post.ToString());
+        if (a % 2 == 0)
+        {
+            <div style="background-color:turquoise;margin:10px 25px 10px 10px;border-radius:15px;padding:5px 5px 5px 15px;width:300px;"><a href="http://localhost:52390/post/details/@p.id" target="index">@p.userid <br /><b style="width:auto;">@p.content.text</b></a></div>
+        }
+        else
+        {
+            <div style="background-color:aqua;margin:10px 10px 10px 25px;border-radius:15px;padding:5px 5px 5px 15px;width:300px;"><a href="http://localhost:52390/post/details/@p.id" target="index">@p.userid <br /><b style="width:auto;">@p.content.text</b></a></div>
+        }
+        a++;
     }
-    else
+</div>
+<div class="col-md-4">
+    <div class="md-form mb-4 pink-textarea active-pink-textarea">
+        <i class="fas fa-angle-double-right prefix"></i>
+        <textarea id="form21" class="md-textarea form-control" rows="3"></textarea>
+        <label for="form21">Öttür!</label>
+    </div>
+    <button class="btn aqua-gradient">Gönder</button>
+    <iframe src="" name="index" class="col-md-12" style="height:300px"></iframe>
+</div>
+
+<div class="col-md-4">
+    @foreach (var hashtag in hashtags)
     {
-        <div style="background-color:aqua;margin:10px 10px 10px 15px;border-radius:15px;padding:5px 5px 5px 15px;width:auto;"><b style="width:auto;">@p.content.text</b></div>
+        if (a % 2 == 0)
+        {
+            <div style="background-color:turquoise;margin:10px 25px 10px 10px;border-radius:15px;padding:5px 5px 5px 15px;width:300px;"><a href="http://localhost:52390/post/details/">@hashtag.ToString()</a></div>
+        }
+        else
+        {
+            <div style="background-color:aqua;margin:10px 10px 10px 25px;border-radius:15px;padding:5px 5px 5px 15px;width:300px;"><a href="http://localhost:52390/post/details/">@hashtag.ToString()</a></div>
+        }
+        a++;
     }
-    a++;
-}
+</div>
 
 
-<h2>Index</h2>
+
+    
 

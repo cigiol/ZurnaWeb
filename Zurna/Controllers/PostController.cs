@@ -1,6 +1,7 @@
 ﻿
 using Newtonsoft.Json.Linq;
 using System;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -27,19 +28,33 @@ namespace Zurna.Controllers
             HttpResponseMessage responseTask = await client.GetAsync("posts");
             string result = await responseTask.Content.ReadAsStringAsync();
             JArray jsonArray = JArray.Parse(result);
-            dynamic data = JObject.Parse(jsonArray[1].ToString());
+            //HttpResponseMessage responsePost = await client.PostAsync("posts",new Post,CancellationToken);
+            var client2 = new HttpClient();
+            client2.BaseAddress = new Uri("http://77.223.142.42/plesk-site-preview/azorlua.com/api/hashtags/");
+            HttpResponseMessage responseTask2 = await client2.GetAsync("getpopulartags");
+            string result2 = await responseTask2.Content.ReadAsStringAsync();
+            JArray jsonArray2 = JArray.Parse(result2);
+
             //To store result of web api response.   
             //_repo = new FireRepo<Post>(_authentication, _baseurl, $"{typeof(Post).Name.ToString()}/");
             //List<Post> result = await _repo.GetList();
 
             ViewData["MyData"] = jsonArray; // Send this list to the view
-            ViewBag.aptal = result.ToString();
+            ViewData["MyData2"] = jsonArray2; // Send this list to the view
+            
             return View("Index");
         }
 
         // GET: Post/Details/5
-        public ActionResult Details(int id)
+        public async System.Threading.Tasks.Task<ActionResult> Details(string id)
         {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("http://77.223.142.42/plesk-site-preview/azorlua.com/api/");
+            HttpResponseMessage responseTask = await client.GetAsync("posts/" + id);
+            string result = await responseTask.Content.ReadAsStringAsync();
+            Post p = JsonConvert.DeserializeObject<Post>(result.ToString());
+            ViewData["MyData"] = p; // Send this list to the view
+            ViewBag.aptal = result.ToString();
             return View();
         }
 
@@ -51,11 +66,13 @@ namespace Zurna.Controllers
 
         // POST: Post/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public async System.Threading.Tasks.Task<ActionResult> CreateAsync(Post post)
         {
             try
             {
-                // TODO: Add insert logic here
+                var client = new HttpClient();
+                client.BaseAddress = new Uri("http://77.223.142.42/plesk-site-preview/azorlua.com/api/");
+                //HttpResponseMessage x = await client.PostAsync("posts", post);
 
                 return RedirectToAction("Index");
             }

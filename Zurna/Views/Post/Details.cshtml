@@ -1,0 +1,23 @@
+﻿@using Newtonsoft.Json.Linq;
+@using Newtonsoft.Json;
+
+@{
+    Layout = null;
+}
+
+
+
+@{
+    Post p = (Post)ViewData["MyData"];
+    <div style="background-color:turquoise;margin:10px 25px 10px 10px;border-radius:15px;padding:5px 5px 5px 15px;width:auto;">@p.userid <br /><b style="width:auto;">@p.content.text</b></div>
+    if (p.comments != null)
+    {
+        foreach (var comment in p.comments)
+        {
+            <b>@comment.text</b><br />
+        }
+    }
+}
+
+
+
